@@ -3,14 +3,11 @@ import logging
 from telegram import ForceReply, Update
 from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
 
-from constants.constants import BOT_TOKEN
+from constants.constants import BOT_TOKEN, LOGGING_LEVEL
 from database.db_session import init_database_session
 
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    level=logging.INFO
-)
-logging.getLogger("httpx").setLevel(logging.WARNING)
+logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=LOGGING_LEVEL)
+logging.getLogger("httpx").setLevel(LOGGING_LEVEL)
 logger = logging.getLogger(__name__)
 
 
