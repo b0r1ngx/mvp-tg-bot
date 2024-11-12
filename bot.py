@@ -5,6 +5,7 @@ from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandl
 
 from constants.constants import BOT_TOKEN, LOGGING_LEVEL
 from database.db_session import init_database_session
+from database.preparations import prepare_user_data_for_commit
 
 logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=LOGGING_LEVEL)
 logging.getLogger("httpx").setLevel(LOGGING_LEVEL)
@@ -13,6 +14,7 @@ logger = logging.getLogger(__name__)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user = update.effective_user
+    prepare_user_data_for_commit(user)
     await update.message.reply_html(
         rf"Hi {user.mention_html()}!",
         reply_markup=ForceReply(selective=True),
