@@ -1,6 +1,6 @@
-from database.db_session import Base
-from datetime import datetime as dt
 from sqlalchemy import Column, Integer, BigInteger, DateTime, String
+
+from database.db_session import Base
 
 
 class User(Base):
@@ -9,6 +9,7 @@ class User(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
 
     chat_id = Column(BigInteger, unique=True)
-    # referred_by = Column(String)
+    username = Column(String)
+    first_name = Column(String)
 
-    created_at = Column(DateTime, default=dt.now())
+    created_at = Column(DateTime)
